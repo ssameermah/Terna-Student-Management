@@ -22,9 +22,15 @@ def doLogin(request):
         user=EmailBackEnd.authenticate(request,request.POST.get("email"),request.POST.get("password"))
         if user != None:
             login(request,user)
-            return HttpResponseRedirect('/admin_home')
+            if user.user_type=="1":
+                return HttpResponseRedirect('/admin_home')
+            elif user.user_type=="2":
+                return HttpResponse("Staff Login")
+            else:
+                return HttpResponse("Student Login")
+
         else:
-            return HttpResponse("Invalid Login")
+            return HttpResponse("Invalid Login Details")
 
 def GetUserDetails(request):
     if request.user!= None:

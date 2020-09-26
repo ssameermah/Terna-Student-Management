@@ -36,7 +36,7 @@ class Courses(models.Model):
 class Subjects(models.Model):
     id = models.AutoField(primary_key=True)
     subject_name=models.CharField(max_length=200)
-    course_id=models.ForeignKey(Courses,on_delete=models.CASCADE)
+    course_id=models.ForeignKey(Courses,on_delete=models.CASCADE,default=1)
     staff_id=models.ForeignKey(Staffs,on_delete=models.CASCADE)
     created_at=models.DateTimeField(auto_now_add=True)
     updated_at=models.DateTimeField(auto_now_add=True)
